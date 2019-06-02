@@ -43,12 +43,16 @@ public interface NominaAssembler {
         ret.setVersion(new Version(nominaXml.getVersion()));
       if (nominaXml.getTipoNomina() != null)
         ret.setTipoNomina(CatalogoNominaAssembler.toTipoNomina(nominaXml.getTipoNomina().value()));
+      
       if (nominaXml.getFechaPago() != null)
         ret.setFechaPago(new Fecha(Utilerias.toLocalDate(nominaXml.getFechaPago())));
+      
       if (nominaXml.getFechaInicialPago() != null)
         ret.setFechaInicialPago(new Fecha(Utilerias.toLocalDate(nominaXml.getFechaInicialPago())));
+      
       if (nominaXml.getFechaFinalPago() != null)
-        ret.setFechaInicialPago(new Fecha(Utilerias.toLocalDate(nominaXml.getFechaFinalPago())));
+        ret.setFechaFinalPago(new Fecha(Utilerias.toLocalDate(nominaXml.getFechaFinalPago())));
+      
       if (nominaXml.getNumDiasPagados() != null)
         ret.setNumDiasPagados(new DiasPagados(nominaXml.getNumDiasPagados()));
       if (nominaXml.getTotalPercepciones() != null)
@@ -64,7 +68,6 @@ public interface NominaAssembler {
       ret.setDeducciones(NominaAssembler.toDeducciones(nominaXml.getDeducciones()));
       ret.setOtrosPagos(NominaAssembler.toOtrosPagos(nominaXml.getOtrosPagos()));
       
-
     }
 
     return ret;
@@ -227,9 +230,10 @@ public interface NominaAssembler {
   static OtrosPagos toOtrosPagos(Nomina.OtrosPagos otrosPagosXml) {
     OtrosPagos ret = null;
     
-    if(otrosPagosXml != null) {
+    if(otrosPagosXml != null && Utilerias.existeInfo(otrosPagosXml.getOtroPago())) {
       ret = new OtrosPagos();
-      ret.setOtrosPagos(NominaAssembler.toOtrosPagos(otrosPagosXml).getOtrosPagos());
+      
+      ret.setOtrosPagos(NominaAssembler.toOtrosPagos(otrosPagosXml.getOtroPago()));
     }
     
     return ret;
