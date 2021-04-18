@@ -4,7 +4,8 @@ target/
 logs/
 target/
 bin/
-
+.idea/
+*.iml
 ### STS ###
 .apt_generated
 .classpath

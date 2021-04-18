@@ -1,6 +1,7 @@
 package com.beet.model.invoice.assembler.nomina;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 import com.beet.model.invoice.assembler.CatalogoAssembler;
@@ -106,7 +107,7 @@ public interface NominaAssembler {
         ret.setAntiguedad(new Antiguedad(receptorXml.getAntigüedad()));
       ret.setTipoContrato(CatalogoNominaAssembler.toTipoContrato(receptorXml.getTipoContrato()));
       if (Utilerias.existeInfo(receptorXml.getSindicalizado()))
-        ret.setSindicalizado(Sindicalizado.valueOf(receptorXml.getSindicalizado()));
+        ret.setSindicalizado(Sindicalizado.valueOf(receptorXml.getSindicalizado().toUpperCase()));
       ret.setTipoJornada(CatalogoNominaAssembler.toTipoJornada(receptorXml.getTipoJornada()));
       ret.setTipoRegimen(CatalogoNominaAssembler.toTipoRegimen(receptorXml.getTipoRegimen()));
       if (Utilerias.existeInfo(receptorXml.getNumEmpleado()))
