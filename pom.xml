@@ -53,5 +53,12 @@
             <version>2.22.1</version>
         </plugin>
     </plugins>
-</build>
+  </build>
+  <distributionManagement>
+    <repository>
+      <id>github</id>
+      <name>GitHub Packages</name>
+      <url>https://maven.pkg.github.com/AdrianVarelaG/Cfdi-model</url>
+    </repository>
+    </distributionManagement>
 </project>
